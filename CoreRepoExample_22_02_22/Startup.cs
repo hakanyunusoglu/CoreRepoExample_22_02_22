@@ -1,5 +1,6 @@
 using CoreRepoExample_22_02_22.Controllers.Repository;
 using CoreRepoExample_22_02_22.Models;
+using CoreRepoExample_22_02_22.Models.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -29,14 +30,16 @@ namespace CoreRepoExample_22_02_22
             services.AddControllersWithViews();
             services.AddDbContext<DataContext>(option => option.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddTransient<IRequestRepository, RequestRepository>();
+            services.AddTransient<ICourseRepository, CourseRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, DataContext datacontext)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                SeedDatabase.Seed(datacontext);
             }
             else
             {

@@ -9,5 +9,6 @@ namespace CoreRepoExample_22_02_22.Controllers.Repository
         IEnumerable<Course> GetCourses();
         Course GetById(int id);
         IQueryable<Course> GetCourseAll();
+        void Insert(Course entity);
     }
 }

@@ -40,5 +40,20 @@ namespace CoreRepoExample_22_02_22.Controllers
         {
             return View(rep.GetRequestsAll());
         }
+        public IActionResult KursListe()
+        {
+            return View(repCourse.GetCourses());
+        }
+        public IActionResult KursEkle()
+        {
+
+            return View();
+        }
+        [HttpPost]
+        public IActionResult KursEkle(Course model)
+        {
+            repCourse.Insert(model);
+            return RedirectToAction("KursListe");
+        }
     }
 }

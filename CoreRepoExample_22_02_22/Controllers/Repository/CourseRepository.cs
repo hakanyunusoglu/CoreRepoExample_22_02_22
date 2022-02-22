@@ -27,5 +27,11 @@ namespace CoreRepoExample_22_02_22.Controllers.Repository
         {
             return db.Courses.ToList();
         }
+
+        public void Insert(Course entity)
+        {
+            db.Courses.Add(entity);
+            db.SaveChanges();
+        }
     }
 }
