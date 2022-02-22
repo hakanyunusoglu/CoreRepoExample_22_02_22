@@ -15,9 +15,11 @@ namespace CoreRepoExample_22_02_22.Controllers
     {
 
         private IRequestRepository rep;
-        public HomeController(IRequestRepository _rep)
+        private ICourseRepository repCourse;
+        public HomeController(IRequestRepository _rep, ICourseRepository _repCourse)
         {
             rep = _rep;
+            repCourse = _repCourse;
         }
         public IActionResult Index()
         {
