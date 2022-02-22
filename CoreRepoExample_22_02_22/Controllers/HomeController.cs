@@ -42,6 +42,7 @@ namespace CoreRepoExample_22_02_22.Controllers
             ViewBag.Email = email;
             ViewBag.Tel = tel;
             ViewBag.Mesaj = mesaj;
+
             return View(rep.GetRequestByFilter(name, email, tel, mesaj));
         }
 
