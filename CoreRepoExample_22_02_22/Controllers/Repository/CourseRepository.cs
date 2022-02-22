@@ -13,6 +13,12 @@ namespace CoreRepoExample_22_02_22.Controllers.Repository
             db= _db;
 
         }
+
+        public IQueryable<Course> GetActiveCourses()
+        {
+            return db.Courses.ToList().Where(x => x.Aktif == true).AsQueryable();
+        }
+
         public Course GetById(int id)
         {
             return db.Courses.FirstOrDefault(x=>x.ID==id);

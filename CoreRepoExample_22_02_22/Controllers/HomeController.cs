@@ -41,8 +41,9 @@ namespace CoreRepoExample_22_02_22.Controllers
             return View(rep.GetRequestsAll());
         }
         public IActionResult KursListe()
+
         {
-            return View(repCourse.GetCourses());
+            return View(repCourse.GetActiveCourses());
         }
         public IActionResult KursEkle()
         {
