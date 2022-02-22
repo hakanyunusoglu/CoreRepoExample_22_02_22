@@ -40,10 +40,15 @@ namespace CoreRepoExample_22_02_22.Controllers
         {
             return View(rep.GetRequestsAll());
         }
-        public IActionResult KursListe()
+
+        //Filtrelemeli Liste
+        public IActionResult KursListe(string name =null, decimal? price=null, string isActive=null)
 
         {
-            return View(repCourse.GetActiveCourses());
+            ViewBag.Name = name;
+            ViewBag.Price = price;
+            ViewBag.isActive = isActive == "on" ? true : false;
+            return View(repCourse.GetCoursesByFilter(name,price,isActive));
         }
         public IActionResult KursEkle()
         {
@@ -54,6 +59,27 @@ namespace CoreRepoExample_22_02_22.Controllers
         public IActionResult KursEkle(Course model)
         {
             repCourse.Insert(model);
+            return RedirectToAction("KursListe");
+        }
+        public IActionResult Edit(int id)
+        {
+            return View(repCourse.GetById(id));
+        }
+        [HttpPost]
+        public IActionResult Edit(Course model)
+        {
+            Course c = new Course();
+            c = repCourse.GetById(model.ID);
+            c.Ad = model.Ad;
+            c.Aciklama = model.Aciklama;
+            c.Fiyat = model.Fiyat;
+            c.Aktif = model.Aktif;
+            repCourse.Update(c);
+            return RedirectToAction("KursListe");
+        }
+        public IActionResult Delete(Course model)
+        {
+            repCourse.Delete(model);
             return RedirectToAction("KursListe");
         }
     }

@@ -1,5 +1,6 @@
 ﻿using CoreRepoExample_22_02_22.Models;
 using CoreRepoExample_22_02_22.Models.Entity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -14,9 +15,9 @@ namespace CoreRepoExample_22_02_22.Controllers.Repository
 
         }
 
-        public IQueryable<Course> GetActiveCourses()
+        public IQueryable<Course> GetStatusCourses(bool status)
         {
-            return db.Courses.ToList().Where(x => x.Aktif == true).AsQueryable();
+            return db.Courses.ToList().Where(x => x.Aktif == status).AsQueryable();
         }
 
         public Course GetById(int id)
@@ -37,6 +38,38 @@ namespace CoreRepoExample_22_02_22.Controllers.Repository
         public void Insert(Course entity)
         {
             db.Courses.Add(entity);
+            db.SaveChanges();
+        }
+
+        public IEnumerable<Course> GetCoursesByFilter(string name = null, decimal? price = null, string isActive = null)
+        {
+            IQueryable<Course> query = db.Courses;
+            if(name != null)
+            {
+                query = query.Where(x => x.Ad.Contains(name));
+            }
+            if(price != null)
+            {
+                query = query.Where(x => x.Fiyat >= price);
+            }
+            if(isActive =="on") //isActive == "on"
+            {
+                query = query.Where(x => x.Aktif == true); //true
+            }
+            return query.ToList();
+           
+           
+        }
+
+        public void Update(Course entity)
+        {
+            db.Courses.Update(entity);
+            db.SaveChanges();
+        }
+
+        public void Delete(Course entity)
+        {
+            db.Courses.Remove(entity);
             db.SaveChanges();
         }
     }

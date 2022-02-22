@@ -3,7 +3,25 @@
 @{
     ViewData["Title"] = "Kurslar";
 }
-
+<div class="card col-6">
+    <div class="card-body">
+        <form method="get" id="filter">
+            <div class="form-group">
+                <input name="name" class="form-control" placeholder="Kursun Adı" value="@ViewBag.Name"/>
+            </div>
+             <div class="form-group">
+                <input name="price" class="form-control" placeholder="Kursun Fiyatı" value = "@ViewBag.Price"/>
+            </div>
+             <div class="custom-control custom-checkbox">
+                <input name="isActive" class="custom-control-input" type="checkbox" id="isActive" checked="@ViewBag.isActive"/>
+                <label class="custom-control-label" for="isActive">Aktiflik Durumu</label>
+            </div>
+            <button class="btn btn-primary">Filtrele</button>
+        </form>
+    </div>
+</div>
+<br />
+<hr />
 <p>
     <a asp-action="KursEkle" class="btn btn-success">Yeni Oluştur</a>
 </p>
@@ -55,3 +73,4 @@
 }
     </tbody>
 </table>
+
