@@ -1,17 +1,29 @@
 ﻿@model IEnumerable<CoreRepoExample_22_02_22.Models.Entity.Request>
 
 @{
-    ViewData["Title"] = "Liste";
+    ViewData["Title"] = "Talep Liste";
 }
-
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Talep Listesi</title>
-</head>
-<body>
+<div class="card col-6">
+    <div class="card-body">
+        <form method="get" id="filter">
+            <div class="form-group">
+                <input name="name" class="form-control" placeholder="Talep Adı" value="@ViewBag.Name"/>
+            </div>
+             <div class="form-group">
+                <input name="email" class="form-control" placeholder="Talep Email" value = "@ViewBag.Email"/>
+            </div>
+             <div class="form-group">
+                <input name="tel" class="form-control" placeholder="Talep Tel" value = "@ViewBag.Tel"/>
+            </div>
+             <div class="form-group">
+                <input name="mesaj" class="form-control" placeholder="Talep Mesaj" value = "@ViewBag.Mesaj"/>
+            </div>
+            <button class="btn btn-primary">Filtrele</button>
+        </form>
+    </div>
+</div>
+<br />
+<hr />
 <p>
     <a asp-action="Ekle" class="btn btn-success">Yeni Oluştur</a>
 </p>
@@ -55,13 +67,11 @@
                 @Html.DisplayFor(modelItem => item.Mesaj)
             </td>
             <td>
-                @Html.ActionLink("Düzenle", "Edit", new {  id=item.ID}, new { @class = "btn btn-warning" }) -
-                @Html.ActionLink("Detay", "Detail", new {  id=item.ID  }, new { @class = "btn btn-info" }) -
-                @Html.ActionLink("Sil", "Delete", new {  id=item.ID  }, new { @class = "btn btn-danger" })
+                @Html.ActionLink("Düzenle", "EditTalep", new {  id=item.ID}, new { @class = "btn btn-warning" }) -
+                @Html.ActionLink("Detay", "DetailTalep", new {  id=item.ID  }, new { @class = "btn btn-info" }) -
+                @Html.ActionLink("Sil", "DeleteTalep", new {  id=item.ID  }, new { @class = "btn btn-danger" })
             </td>
         </tr>
 }
     </tbody>
 </table>
-</body>
-</html>

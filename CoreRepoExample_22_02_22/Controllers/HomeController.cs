@@ -36,9 +36,13 @@ namespace CoreRepoExample_22_02_22.Controllers
             rep.Insert(model);
             return View("Tesekkur",model);
         }
-        public IActionResult Liste()
+        public IActionResult Liste(string name = null, string email = null, string tel = null, string mesaj = null)
         {
-            return View(rep.GetRequestsAll());
+            ViewBag.Name = name;
+            ViewBag.Email = email;
+            ViewBag.Tel = tel;
+            ViewBag.Mesaj = mesaj;
+            return View(rep.GetRequestByFilter(name, email, tel, mesaj));
         }
 
         //Filtrelemeli Liste
@@ -81,6 +85,35 @@ namespace CoreRepoExample_22_02_22.Controllers
         {
             repCourse.Delete(model);
             return RedirectToAction("KursListe");
+        }
+        public IActionResult EditTalep(int id)
+        {
+            return View(rep.GetById(id));
+        }
+        [HttpPost]
+        public IActionResult EditTalep(Request model)
+        {
+            Request r = new Request();
+            r = rep.GetById(model.ID);
+            r.Ad = model.Ad;
+            r.Email = model.Email;
+            r.Telefon = model.Telefon;
+            r.Mesaj = model.Mesaj;
+            rep.Update(r);
+            return RedirectToAction("Liste");
+        }
+        public IActionResult DeleteTalep(Request model)
+        {
+            rep.Delete(model);
+            return RedirectToAction("Liste");
+        }
+        public IActionResult DetailTalep(int id)
+        {
+            return View(rep.GetById(id));
+        }
+        public IActionResult Detail(int id)
+        {
+            return View(repCourse.GetById(id));
         }
     }
 }
