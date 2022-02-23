@@ -35,7 +35,7 @@
                 <select class="form-control" asp-for="Courses.TeacherID" asp-items="@(new SelectList(Model.tList,"ID","Name"))">
         <option value="0">--- Eğitmen Seçiniz ---</option>
     </select>
-    <p>Sadece uygun eğitmenler görüntülenmektedir!</p>
+    <p style="font-size:10px; color:red">Sadece uygun eğitmenler görüntülenmektedir!</p>
     <span asp-validation-for="Courses.TeacherID" class="text-danger"></span>
             </div>
             <div class="form-group form-check">
