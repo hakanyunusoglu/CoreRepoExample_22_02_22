@@ -1,5 +1,6 @@
 ﻿using CoreRepoExample_22_02_22.Models;
 using CoreRepoExample_22_02_22.Models.Entity;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,7 +18,11 @@ namespace CoreRepoExample_22_02_22.Controllers.Repository
 
         public void Delete(Teacher entity)
         {
-            db.Teachers.Remove(entity);
+            Teacher query = db.Teachers.Where(x => x.ID == entity.ID).Include(x => x.Address).FirstOrDefault();
+            int ID = query.Address.ID;
+            db.Teachers.Remove(query);
+            db.SaveChanges();
+            db.Database.ExecuteSqlInterpolated($"EXEC DeleteAddress @ID={ID}");
             db.SaveChanges();
         }
 
