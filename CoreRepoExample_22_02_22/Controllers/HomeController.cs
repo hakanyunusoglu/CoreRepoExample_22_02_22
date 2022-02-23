@@ -16,10 +16,13 @@ namespace CoreRepoExample_22_02_22.Controllers
 
         private IRequestRepository rep;
         private ICourseRepository repCourse;
-        public HomeController(IRequestRepository _rep, ICourseRepository _repCourse)
+        private ITeacherRepository repTeacher;
+        EntityVM evm = new EntityVM();
+        public HomeController(IRequestRepository _rep, ICourseRepository _repCourse, ITeacherRepository _repTeacher)
         {
             rep = _rep;
             repCourse = _repCourse;
+            repTeacher = _repTeacher;
         }
         public IActionResult Index()
         {
@@ -53,32 +56,38 @@ namespace CoreRepoExample_22_02_22.Controllers
             ViewBag.Name = name;
             ViewBag.Price = price;
             ViewBag.isActive = isActive == "on" ? true : false;
-            return View(repCourse.GetCoursesByFilter(name,price,isActive));
+            EntityVM evm = new EntityVM();
+            evm.cList = repCourse.GetCoursesByFilter(name, price, isActive).ToList();
+            evm.tList = repTeacher.GetTeachers().ToList();
+            return View(evm);
         }
         public IActionResult KursEkle()
         {
-
-            return View();
+            evm.tList = repTeacher.GetAvailableTeachers().ToList();
+            return View(evm);
         }
         [HttpPost]
-        public IActionResult KursEkle(Course model)
+        public IActionResult KursEkle(EntityVM model)
         {
-            repCourse.Insert(model);
+            repCourse.Insert(model.Courses);
             return RedirectToAction("KursListe");
         }
         public IActionResult Edit(int id)
         {
-            return View(repCourse.GetById(id));
+            evm.tList = repTeacher.GetAvailableTeachers().ToList();
+            evm.Courses = repCourse.GetById(id);
+            return View(evm);
         }
         [HttpPost]
-        public IActionResult Edit(Course model)
+        public IActionResult Edit(EntityVM model)
         {
             Course c = new Course();
-            c = repCourse.GetById(model.ID);
-            c.Ad = model.Ad;
-            c.Aciklama = model.Aciklama;
-            c.Fiyat = model.Fiyat;
-            c.Aktif = model.Aktif;
+            c = repCourse.GetById(model.Courses.ID);
+            c.Ad = model.Courses.Ad;
+            c.Aciklama = model.Courses.Aciklama;
+            c.Fiyat = model.Courses.Fiyat;
+            c.Aktif = model.Courses.Aktif;
+            c.TeacherID = model.Courses.TeacherID;
             repCourse.Update(c);
             return RedirectToAction("KursListe");
         }
@@ -114,7 +123,9 @@ namespace CoreRepoExample_22_02_22.Controllers
         }
         public IActionResult Detail(int id)
         {
-            return View(repCourse.GetById(id));
+            evm.Courses = repCourse.GetById(id);
+            evm.Teachers = repTeacher.GetTeacherAll().FirstOrDefault(x=>x.ID == evm.Courses.TeacherID);
+            return View(evm);
         }
     }
 }

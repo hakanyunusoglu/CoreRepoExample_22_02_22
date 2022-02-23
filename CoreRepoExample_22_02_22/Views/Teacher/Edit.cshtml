@@ -1,0 +1,48 @@
+﻿@model CoreRepoExample_22_02_22.Models.EntityVM
+
+@{
+    ViewData["Title"] = "Eğitmen Güncelle";
+}
+<h4>Eğitmen Güncelle</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+             <div class="form-group">
+                <label asp-for="Teachers.ID" class="control-label"></label>
+                <input asp-for="Teachers.ID" class="form-control" readonly />
+                <span asp-validation-for="Teachers.ID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Teachers.Name" class="control-label"></label>
+                <input asp-for="Teachers.Name" class="form-control" />
+                <span asp-validation-for="Teachers.Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Teachers.Surname" class="control-label"></label>
+                <input asp-for="Teachers.Surname" class="form-control" />
+                <span asp-validation-for="Teachers.Surname" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Teachers.Address.City" class="control-label"></label>
+                <input asp-for="Teachers.Address.City" class="form-control" />
+                <span asp-validation-for="Teachers.Address.City" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Teachers.Address.Country" class="control-label"></label>
+                <input asp-for="Teachers.Address.Country" class="form-control" />
+                <span asp-validation-for="Teachers.Address.Country" class="text-danger"></span>
+            </div>
+             <div class="form-group d-none">
+                <label asp-for="Teachers.Address.ID" class="control-label"></label>
+                <input asp-for="Teachers.Address.ID" class="form-control" />
+                <span asp-validation-for="Teachers.Address.ID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Güncelle" class="btn btn-success" />
+                 <a asp-action="Index" class="btn btn-primary">Listeye Dön</a>
+            </div>
+        </form>
+    </div>
+</div>

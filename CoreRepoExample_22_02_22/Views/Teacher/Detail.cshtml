@@ -1,0 +1,47 @@
+﻿@model CoreRepoExample_22_02_22.Models.EntityVM
+
+@{
+    ViewData["Title"] = "Eğitmen Detay";
+}
+
+<div>
+    <h4>Eğitmen Detayı</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Teachers.ID)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Teachers.ID)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Teachers.Name)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Teachers.Name)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Teachers.Surname)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Teachers.Surname)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Teachers.Address.City)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Teachers.Address.City)
+        </dd>
+          <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Teachers.Address.Country)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Teachers.Address.Country)
+        </dd>
+
+        
+    </dl>
+</div>
+<div>
+    <a asp-action="Index" class="btn btn-primary">Listeye Dön</a>
+</div>

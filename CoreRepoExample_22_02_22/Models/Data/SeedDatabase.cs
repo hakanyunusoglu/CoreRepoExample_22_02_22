@@ -27,25 +27,29 @@ namespace CoreRepoExample_22_02_22.Models.Data
             Ad = "Html",
             Aciklama = "Html Hakkında",
             Fiyat = 145,
-            Aktif = true
+            Aktif = true,
+             TeacherID = 2
         }, new Course
             {
                Ad = "Java",
                Aciklama = "Java Hakkında",
                Fiyat = 124,
-               Aktif =false
+               Aktif =false,
+               TeacherID = 3
             } , new Course
             {
                Ad = "Css",
                Aciklama = "Css Hakkında",
                Fiyat = 180,
-               Aktif =true
+               Aktif =true,
+               TeacherID = 1
             }, new Course
             {
                Ad = "React",
                Aciklama = "React Hakkında",
                Fiyat = 270,
-               Aktif =false
+               Aktif =false,
+               TeacherID=3
             }
         };
 

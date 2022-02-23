@@ -1,4 +1,5 @@
-﻿using CoreRepoExample_22_02_22.Models.Entity;
+﻿using CoreRepoExample_22_02_22.Models;
+using CoreRepoExample_22_02_22.Models.Entity;
 using System.Collections.Generic;
 using System.Linq;
 

@@ -31,6 +31,7 @@ namespace CoreRepoExample_22_02_22
             services.AddDbContext<DataContext>(option => option.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddTransient<IRequestRepository, RequestRepository>();
             services.AddTransient<ICourseRepository, CourseRepository>();
+            services.AddTransient<ITeacherRepository, TeacherRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -39,7 +40,7 @@ namespace CoreRepoExample_22_02_22
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                SeedDatabase.Seed(datacontext);
+                //SeedDatabase.Seed(datacontext);
             }
             else
             {

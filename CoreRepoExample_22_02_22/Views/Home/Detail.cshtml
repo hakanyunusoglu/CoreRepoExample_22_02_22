@@ -1,4 +1,4 @@
-﻿@model CoreRepoExample_22_02_22.Models.Entity.Course
+﻿@model CoreRepoExample_22_02_22.Models.EntityVM
 
 @{
     ViewData["Title"] = "Kurs Detay";
@@ -9,35 +9,42 @@
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ID)
+            @Html.DisplayNameFor(model => model.Courses.ID)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ID)
+            @Html.DisplayFor(model => model.Courses.ID)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Ad)
+            @Html.DisplayNameFor(model => model.Courses.Ad)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Ad)
+            @Html.DisplayFor(model => model.Courses.Ad)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Aciklama)
+            @Html.DisplayNameFor(model => model.Teachers.Name)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Aciklama)
+            @Html.DisplayFor(model => model.Teachers.Name)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Fiyat)
+            @Html.DisplayNameFor(model => model.Courses.Aciklama)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Fiyat)
+            @Html.DisplayFor(model => model.Courses.Aciklama)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Aktif)
+            @Html.DisplayNameFor(model => model.Courses.Fiyat)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Aktif)
+            @Html.DisplayFor(model => model.Courses.Fiyat)
         </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Courses.Aktif)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Courses.Aktif)
+        </dd>
+        
     </dl>
 </div>
 <div>

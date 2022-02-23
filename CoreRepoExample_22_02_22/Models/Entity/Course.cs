@@ -7,6 +7,8 @@
         public string Aciklama { get; set; }
         public decimal Fiyat { get; set; }
         public bool Aktif { get; set; }
+        public int TeacherID { get; set; }
+        public Teacher Teacher { get; set; }
 
     }
 }
