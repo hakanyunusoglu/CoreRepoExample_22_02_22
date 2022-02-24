@@ -35,10 +35,12 @@ namespace CoreRepoExample_22_02_22.Controllers
         [HttpPost]
         public IActionResult Edit(EntityVM model)
         {
-            Teacher t = new Teacher();
+            model.Addresses = model.Teachers.Address;
+            Teacher t = rep.GetById(model.Teachers.ID);
             t.Name = model.Teachers.Name;
             t.Surname = model.Teachers.Surname;
-            t.Address = model.Teachers.Address;
+            t.Address.City = model.Addresses.City;
+            t.Address.Country = model.Addresses.Country;
             rep.Update(t);
             return RedirectToAction("Index");
         }
