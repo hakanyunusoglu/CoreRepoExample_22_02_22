@@ -87,7 +87,10 @@ namespace CoreRepoExample_22_02_22.Controllers
             c.Aciklama = model.Courses.Aciklama;
             c.Fiyat = model.Courses.Fiyat;
             c.Aktif = model.Courses.Aktif;
+            if(c.TeacherID != model.Courses.TeacherID && model.Courses.TeacherID != 0)
+            { 
             c.TeacherID = model.Courses.TeacherID;
+            }
             repCourse.Update(c);
             return RedirectToAction("KursListe");
         }

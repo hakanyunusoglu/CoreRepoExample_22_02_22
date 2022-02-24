@@ -14,5 +14,6 @@ namespace CoreRepoExample_22_02_22.Controllers.Repository
         void Update(Teacher entity);
         void Delete(Teacher entity);
         IEnumerable<Teacher> GetAvailableTeachers();
+        void Save();
     }
 }

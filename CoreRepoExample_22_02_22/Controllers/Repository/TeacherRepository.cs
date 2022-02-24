@@ -71,6 +71,11 @@ namespace CoreRepoExample_22_02_22.Controllers.Repository
             db.SaveChanges();
         }
 
+        public void Save()
+        {
+            db.SaveChanges();
+        }
+
         public void Update(Teacher entity)
         {
             db.Teachers.Update(entity);

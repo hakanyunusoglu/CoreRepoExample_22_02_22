@@ -10,10 +10,12 @@ namespace CoreRepoExample_22_02_22.Controllers
     public class TeacherController : Controller
     {
         private ITeacherRepository rep;
+        private ICourseRepository repCourse;
         EntityVM evm = new EntityVM();
-        public TeacherController(ITeacherRepository _rep)
+        public TeacherController(ITeacherRepository _rep, ICourseRepository _repCourse)
         {
             rep = _rep;
+            repCourse = _repCourse;
         }
         public IActionResult Index(string name = null, string surname = null)
         {
@@ -33,11 +35,10 @@ namespace CoreRepoExample_22_02_22.Controllers
         [HttpPost]
         public IActionResult Edit(EntityVM model)
         {
-            model.Addresses = model.Teachers.Address;
             Teacher t = new Teacher();
             t.Name = model.Teachers.Name;
             t.Surname = model.Teachers.Surname;
-            t.Address = model.Addresses;
+            t.Address = model.Teachers.Address;
             rep.Update(t);
             return RedirectToAction("Index");
         }
